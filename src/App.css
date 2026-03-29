@@ -1,0 +1,61 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Chaotic Goblin Tech — Light mode (base clara invertida) */
+    --background: 0 0% 91%;          /* #E8E8E8 Parchment */
+    --foreground: 231 29% 14%;       /* #1a1a2e Void Night */
+    --card: 0 0% 100%;
+    --card-foreground: 231 29% 14%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 231 29% 14%;
+    --primary: 93 85% 61%;           /* #8BF046 Slime Green */
+    --primary-foreground: 231 29% 14%;
+    --secondary: 219 50% 29%;        /* #16213e Cavern Blue */
+    --secondary-foreground: 0 0% 91%;
+    --muted: 0 0% 85%;
+    --muted-foreground: 231 29% 30%;
+    --accent: 120 67% 78%;           /* #C8F0A0 Potion Mist */
+    --accent-foreground: 231 29% 14%;
+    --destructive: 30 100% 61%;      /* #FF9A3C Forge Orange */
+    --destructive-foreground: 231 29% 14%;
+    --border: 0 0% 80%;
+    --input: 0 0% 80%;
+    --ring: 93 85% 61%;              /* Slime Green */
+    --radius: 0.5rem;
+    --chart-1: 93 85% 61%;           /* Slime Green */
+    --chart-2: 30 100% 61%;          /* Forge Orange */
+    --chart-3: 120 67% 78%;          /* Potion Mist */
+    --chart-4: 219 50% 29%;          /* Cavern Blue */
+    --chart-5: 231 29% 14%;          /* Void Night */
+  }
+
+  .dark {
+    --background: 231 29% 14%;       /* #1a1a2e Void Night */
+    --foreground: 0 0% 91%;          /* #E8E8E8 Parchment */
+    --card: 219 50% 17%;             /* #16213e Cavern Blue */
+    --card-foreground: 0 0% 91%;
+    --popover: 219 50% 17%;
+    --popover-foreground: 0 0% 91%;
+    --primary: 93 85% 61%;           /* #8BF046 Slime Green */
+    --primary-foreground: 231 29% 14%;
+    --secondary: 219 50% 17%;        /* #16213e Cavern Blue */
+    --secondary-foreground: 0 0% 91%;
+    --muted: 219 50% 22%;
+    --muted-foreground: 120 67% 78%; /* Potion Mist — texto suave */
+    --accent: 120 67% 78%;           /* #C8F0A0 Potion Mist */
+    --accent-foreground: 231 29% 14%;
+    --destructive: 30 100% 61%;      /* #FF9A3C Forge Orange */
+    --destructive-foreground: 231 29% 14%;
+    --border: 219 50% 22%;
+    --input: 219 50% 22%;
+    --ring: 93 85% 61%;              /* Slime Green */
+    --chart-1: 93 85% 61%;           /* Slime Green */
+    --chart-2: 30 100% 61%;          /* Forge Orange */
+    --chart-3: 120 67% 78%;          /* Potion Mist */
+    --chart-4: 219 50% 29%;          /* Cavern Blue */
+    --chart-5: 231 29% 14%;          /* Void Night */
+  }
+}
