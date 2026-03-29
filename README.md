@@ -6,21 +6,25 @@ Boilerplate de frontend opinado, pronto para produção, construído com as melh
 
 ## Stack
 
-| Ferramenta | Descrição | Docs |
-|---|---|---|
-| [Vite](https://vitejs.dev) | Build tool e dev server ultrarrápido | https://vitejs.dev |
-| [React 19](https://react.dev) | Biblioteca de UI | https://react.dev |
-| [TypeScript](https://www.typescriptlang.org) | Tipagem estática | https://www.typescriptlang.org |
-| [Shadcn/ui](https://ui.shadcn.com) | Componentes acessíveis e customizáveis | https://ui.shadcn.com |
-| [TanStack Router](https://tanstack.com/router) | Roteamento type-safe | https://tanstack.com/router |
-| [TanStack Form](https://tanstack.com/form) | Gerenciamento de formulários | https://tanstack.com/form |
-| [Zod](https://zod.dev) | Validação de schemas | https://zod.dev |
-| [Zustand](https://zustand-demo.pmnd.rs) | Gerenciamento de estado global | https://zustand-demo.pmnd.rs |
-| [Axios](https://axios-http.com) | Cliente HTTP | https://axios-http.com |
-| [i18next](https://www.i18next.com) | Internacionalização (i18n) | https://www.i18next.com |
-| [Vitest](https://vitest.dev) | Framework de testes unitários | https://vitest.dev |
-| [Testing Library](https://testing-library.com) | Utilitários de teste para React | https://testing-library.com |
-| [Space Grotesk](https://fonts.google.com/specimen/Space+Grotesk) | Tipografia principal | https://fontsource.org/fonts/space-grotesk |
+| Ferramenta                                                       | Descrição                                              | Docs                                       |
+| ---------------------------------------------------------------- | ------------------------------------------------------ | ------------------------------------------ |
+| [Vite](https://vitejs.dev)                                       | Build tool e dev server ultrarrápido                   | https://vitejs.dev                         |
+| [React 19](https://react.dev)                                    | Biblioteca de UI                                       | https://react.dev                          |
+| [TypeScript](https://www.typescriptlang.org)                     | Tipagem estática                                       | https://www.typescriptlang.org             |
+| [Shadcn/ui](https://ui.shadcn.com)                               | Componentes acessíveis e customizáveis                 | https://ui.shadcn.com                      |
+| [TanStack Router](https://tanstack.com/router)                   | Roteamento type-safe                                   | https://tanstack.com/router                |
+| [TanStack Form](https://tanstack.com/form)                       | Gerenciamento de formulários                           | https://tanstack.com/form                  |
+| [Zod](https://zod.dev)                                           | Validação de schemas                                   | https://zod.dev                            |
+| [Zustand](https://zustand-demo.pmnd.rs)                          | Gerenciamento de estado global                         | https://zustand-demo.pmnd.rs               |
+| [Axios](https://axios-http.com)                                  | Cliente HTTP                                           | https://axios-http.com                     |
+| [i18next](https://www.i18next.com)                               | Internacionalização (i18n)                             | https://www.i18next.com                    |
+| [Vitest](https://vitest.dev)                                     | Framework de testes unitários                          | https://vitest.dev                         |
+| [Testing Library](https://testing-library.com)                   | Utilitários de teste para React                        | https://testing-library.com                |
+| [Space Grotesk](https://fonts.google.com/specimen/Space+Grotesk) | Tipografia principal                                   | https://fontsource.org/fonts/space-grotesk |
+| [Prettier](https://prettier.io)                                  | Formatação de código consistente                       | https://prettier.io                        |
+| [Husky](https://typicode.github.io/husky)                        | Git hooks para rodar lint/format antes de commits      | https://typicode.github.io/husky           |
+| [lint-staged](https://github.com/lint-staged/lint-staged)        | Roda linters apenas nos arquivos staged                | https://github.com/lint-staged/lint-staged |
+| [Knip](https://knip.dev)                                         | Remove dependências, exports e arquivos não utilizados | https://knip.dev                           |
 
 ---
 
@@ -70,6 +74,8 @@ pnpm test         # Roda os testes em modo watch
 pnpm test:ui      # Roda os testes com interface visual
 pnpm test:coverage # Gera relatório de cobertura
 pnpm lint         # Roda o ESLint
+pnpm format       # Formata todos os arquivos com Prettier
+pnpm knip         # Detecta código morto e dependências não utilizadas
 ```
 
 ---
@@ -109,14 +115,14 @@ src/
 
 O projeto usa um tema customizado chamado **Chaotic Goblin Tech** configurado via variáveis CSS do Shadcn/ui.
 
-| Token | Cor | Hex |
-|---|---|---|
-| `--background` | Void Night | `#1a1a2e` |
-| `--card` | Cavern Blue | `#16213e` |
-| `--primary` | Slime Green | `#8BF046` |
+| Token           | Cor          | Hex       |
+| --------------- | ------------ | --------- |
+| `--background`  | Void Night   | `#1a1a2e` |
+| `--card`        | Cavern Blue  | `#16213e` |
+| `--primary`     | Slime Green  | `#8BF046` |
 | `--destructive` | Forge Orange | `#FF9A3C` |
-| `--accent` | Potion Mist | `#C8F0A0` |
-| `--foreground` | Parchment | `#E8E8E8` |
+| `--accent`      | Potion Mist  | `#C8F0A0` |
+| `--foreground`  | Parchment    | `#E8E8E8` |
 
 Para adicionar novos componentes Shadcn/ui:
 
@@ -181,6 +187,34 @@ import { api } from "@/lib/axios"
 
 const { data } = await api.get("/users")
 ```
+
+---
+
+## Qualidade de Código
+
+### Prettier
+
+Formata o código automaticamente. Para formatar todos os arquivos:
+
+```bash
+pnpm format
+```
+
+A configuração fica em `.prettierrc`. O plugin `prettier-plugin-tailwindcss` ordena as classes do Tailwind automaticamente.
+
+### Husky + lint-staged
+
+A cada `git commit`, o Husky roda automaticamente o ESLint e o Prettier apenas nos arquivos staged. Nenhuma configuração extra necessária — funciona após o `pnpm install`.
+
+### Knip
+
+Detecta e reporta arquivos, exports e dependências não utilizados:
+
+```bash
+pnpm knip
+```
+
+A configuração fica em `knip.json`.
 
 ---
 
