@@ -1,4 +1,9 @@
+import { useAppStore } from "../../store/app.store";
+import { Button } from "../ui/button";
+import { useTranslation } from "react-i18next";
+
 export function Hero() {
+  const { t } = useTranslation();
   return (
     <section className="flex flex-col items-center justify-center">
       <h1
@@ -23,6 +28,14 @@ export function Hero() {
       <div>
         <span className="text-9xl text-[#3D5A35]">BOILER</span>
         <span className="text-9xl text-[#D4924A]">PLATE</span>
+      </div>
+      <div className="flex flex-col items-center py-5">
+        <p>
+          {t("count")}: {useAppStore((state) => state.count)}
+        </p>
+        <Button onClick={useAppStore((state) => state.increment)}>
+          {t("increment")}
+        </Button>
       </div>
     </section>
   );
