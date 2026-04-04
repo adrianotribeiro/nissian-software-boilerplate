@@ -6,25 +6,25 @@ Boilerplate de frontend opinado, pronto para produção, construído com as melh
 
 ## Stack
 
-| Ferramenta                                                       | Descrição                                              | Docs                                       |
-| ---------------------------------------------------------------- | ------------------------------------------------------ | ------------------------------------------ |
-| [Vite](https://vitejs.dev)                                       | Build tool e dev server ultrarrápido                   | https://vitejs.dev                         |
-| [React 19](https://react.dev)                                    | Biblioteca de UI                                       | https://react.dev                          |
-| [TypeScript](https://www.typescriptlang.org)                     | Tipagem estática                                       | https://www.typescriptlang.org             |
-| [Shadcn/ui](https://ui.shadcn.com)                               | Componentes acessíveis e customizáveis                 | https://ui.shadcn.com                      |
-| [TanStack Router](https://tanstack.com/router)                   | Roteamento type-safe                                   | https://tanstack.com/router                |
-| [TanStack Form](https://tanstack.com/form)                       | Gerenciamento de formulários                           | https://tanstack.com/form                  |
-| [Zod](https://zod.dev)                                           | Validação de schemas                                   | https://zod.dev                            |
-| [Zustand](https://zustand-demo.pmnd.rs)                          | Gerenciamento de estado global                         | https://zustand-demo.pmnd.rs               |
-| [Axios](https://axios-http.com)                                  | Cliente HTTP                                           | https://axios-http.com                     |
-| [i18next](https://www.i18next.com)                               | Internacionalização (i18n)                             | https://www.i18next.com                    |
-| [Vitest](https://vitest.dev)                                     | Framework de testes unitários                          | https://vitest.dev                         |
-| [Testing Library](https://testing-library.com)                   | Utilitários de teste para React                        | https://testing-library.com                |
-| [Space Grotesk](https://fonts.google.com/specimen/Space+Grotesk) | Tipografia principal                                   | https://fontsource.org/fonts/space-grotesk |
-| [Prettier](https://prettier.io)                                  | Formatação de código consistente                       | https://prettier.io                        |
-| [Husky](https://typicode.github.io/husky)                        | Git hooks para rodar lint/format antes de commits      | https://typicode.github.io/husky           |
-| [lint-staged](https://github.com/lint-staged/lint-staged)        | Roda linters apenas nos arquivos staged                | https://github.com/lint-staged/lint-staged |
-| [Knip](https://knip.dev)                                         | Remove dependências, exports e arquivos não utilizados | https://knip.dev                           |
+| Ferramenta                                                              | Descrição                                              | Docs                                                       |
+| ----------------------------------------------------------------------- | ------------------------------------------------------ | ---------------------------------------------------------- |
+| [Vite](https://vitejs.dev)                                              | Build tool e dev server ultrarrápido                   | https://vitejs.dev                                         |
+| [React 19](https://react.dev)                                           | Biblioteca de UI                                       | https://react.dev                                          |
+| [TypeScript](https://www.typescriptlang.org)                            | Tipagem estática                                       | https://www.typescriptlang.org                             |
+| [Shadcn/ui](https://ui.shadcn.com)                                      | Componentes acessíveis e customizáveis                 | https://ui.shadcn.com                                      |
+| [TanStack Router](https://tanstack.com/router)                          | Roteamento type-safe                                   | https://tanstack.com/router                                |
+| [TanStack Form](https://tanstack.com/form)                              | Gerenciamento de formulários                           | https://tanstack.com/form                                  |
+| [Zod](https://zod.dev)                                                  | Validação de schemas                                   | https://zod.dev                                            |
+| [Zustand](https://zustand-demo.pmnd.rs)                                 | Gerenciamento de estado global                         | https://zustand-demo.pmnd.rs                               |
+| [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) | Cliente HTTP nativo do browser                         | https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API |
+| [i18next](https://www.i18next.com)                                      | Internacionalização (i18n)                             | https://www.i18next.com                                    |
+| [Vitest](https://vitest.dev)                                            | Framework de testes unitários                          | https://vitest.dev                                         |
+| [Testing Library](https://testing-library.com)                          | Utilitários de teste para React                        | https://testing-library.com                                |
+| [Space Grotesk](https://fonts.google.com/specimen/Space+Grotesk)        | Tipografia principal                                   | https://fontsource.org/fonts/space-grotesk                 |
+| [Prettier](https://prettier.io)                                         | Formatação de código consistente                       | https://prettier.io                                        |
+| [Husky](https://typicode.github.io/husky)                               | Git hooks para rodar lint/format antes de commits      | https://typicode.github.io/husky                           |
+| [lint-staged](https://github.com/lint-staged/lint-staged)               | Roda linters apenas nos arquivos staged                | https://github.com/lint-staged/lint-staged                 |
+| [Knip](https://knip.dev)                                                | Remove dependências, exports e arquivos não utilizados | https://knip.dev                                           |
 
 ---
 
@@ -67,15 +67,15 @@ cp .env.example .env
 ## Scripts
 
 ```bash
-pnpm dev          # Inicia o servidor de desenvolvimento
-pnpm build        # Gera o build de produção
-pnpm preview      # Visualiza o build de produção localmente
-pnpm test         # Roda os testes em modo watch
-pnpm test:ui      # Roda os testes com interface visual
+pnpm dev           # Inicia o servidor de desenvolvimento
+pnpm build         # Gera o build de produção
+pnpm preview       # Visualiza o build de produção localmente
+pnpm test          # Roda os testes em modo watch
+pnpm test:ui       # Roda os testes com interface visual
 pnpm test:coverage # Gera relatório de cobertura
-pnpm lint         # Roda o ESLint
-pnpm format       # Formata todos os arquivos com Prettier
-pnpm knip         # Detecta código morto e dependências não utilizadas
+pnpm lint          # Roda o ESLint
+pnpm format        # Formata todos os arquivos com Prettier
+pnpm knip          # Detecta código morto e dependências não utilizadas
 ```
 
 ---
@@ -85,7 +85,8 @@ pnpm knip         # Detecta código morto e dependências não utilizadas
 Copie o `.env.example` e preencha os valores:
 
 ```env
-VITE_API_URL=        # URL base da API
+VITE_API_URL=         # URL base da API
+VITE_API_TIMEOUT=     # Timeout das requisições em ms (padrão: 10000)
 ```
 
 ---
@@ -97,7 +98,7 @@ src/
 ├── components/
 │   └── ui/          # Componentes do Shadcn/ui
 ├── lib/
-│   ├── axios.ts     # Instância configurada do Axios
+│   ├── http.ts      # Wrapper da Fetch API (get, post, put, patch, delete)
 │   ├── i18n.ts      # Configuração do i18next
 │   └── utils.ts     # Utilitários (cn do Shadcn)
 ├── routes/          # Rotas do TanStack Router
@@ -180,12 +181,46 @@ function Counter() {
 
 ## Requisições HTTP
 
-A instância do Axios está configurada em `src/lib/axios.ts`:
+O cliente HTTP fica em `src/lib/http.ts`. É um wrapper leve sobre a **Fetch API nativa** do browser — sem dependências externas — com suporte a tipagem genérica, query params, timeout via `AbortController`, interceptors de request/response e erro tipado via `HttpError`.
+
+O token JWT é injetado automaticamente em todas as requisições a partir do `localStorage`, e respostas `401` redirecionam para `/login` sem nenhuma configuração extra.
 
 ```ts
-import { api } from "@/lib/axios"
+import { http, HttpError } from "@/lib/http"
 
-const { data } = await api.get("/users")
+// GET com query params tipados
+const users = await http.get<User[]>("/users", {
+  params: { page: 1, limit: 20 },
+})
+
+// POST
+const novoUser = await http.post<User>("/users", { name: "João" })
+
+// PUT / PATCH / DELETE
+await http.put("/users/123", { name: "João Atualizado" })
+await http.patch("/users/123", { active: false })
+await http.delete("/users/123")
+
+// Tratamento de erro tipado
+try {
+  await http.delete("/users/123")
+} catch (e) {
+  if (e instanceof HttpError) {
+    console.log(e.status) // 404, 500, etc.
+    console.log(e.data) // corpo da resposta de erro
+  }
+}
+```
+
+Para adicionar interceptors customizados (ex: logging, toast de erro global):
+
+```ts
+import { addRequestInterceptor, addResponseInterceptor } from "@/lib/http"
+
+addResponseInterceptor(async (response) => {
+  if (response.status >= 500) toast.error("Erro no servidor")
+  return response
+})
 ```
 
 ---
