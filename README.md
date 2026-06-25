@@ -11,17 +11,20 @@ Boilerplate de frontend opinado, pronto para produção, construído com as melh
 | [Vite](https://vitejs.dev)                                              | Build tool e dev server ultrarrápido                   | https://vitejs.dev                                         |
 | [React 19](https://react.dev)                                           | Biblioteca de UI                                       | https://react.dev                                          |
 | [TypeScript](https://www.typescriptlang.org)                            | Tipagem estática                                       | https://www.typescriptlang.org                             |
-| [Shadcn/ui](https://ui.shadcn.com)                                      | Componentes acessíveis e customizáveis                 | https://ui.shadcn.com                                      |
-| [TanStack Router](https://tanstack.com/router)                          | Roteamento type-safe                                   | https://tanstack.com/router                                |
+| [TanStack Router](https://tanstack.com/router)                          | Roteamento type-safe com file-based routing            | https://tanstack.com/router                                |
 | [TanStack Form](https://tanstack.com/form)                              | Gerenciamento de formulários                           | https://tanstack.com/form                                  |
+| [TanStack Store](https://tanstack.com/store)                            | Gerenciamento de estado reativo                        | https://tanstack.com/store                                 |
 | [Zod](https://zod.dev)                                                  | Validação de schemas                                   | https://zod.dev                                            |
 | [Zustand](https://zustand-demo.pmnd.rs)                                 | Gerenciamento de estado global                         | https://zustand-demo.pmnd.rs                               |
 | [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) | Cliente HTTP nativo do browser                         | https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API |
 | [i18next](https://www.i18next.com)                                      | Internacionalização (i18n)                             | https://www.i18next.com                                    |
+| [Tailwind CSS v4](https://tailwindcss.com)                              | Framework CSS utility-first                            | https://tailwindcss.com                                    |
+| [tw-animate-css](https://github.com/jamiebuilds/tw-animate-css)         | Animações para Tailwind v4                             | https://github.com/jamiebuilds/tw-animate-css              |
 | [Vitest](https://vitest.dev)                                            | Framework de testes unitários                          | https://vitest.dev                                         |
 | [Testing Library](https://testing-library.com)                          | Utilitários de teste para React                        | https://testing-library.com                                |
 | [Space Grotesk](https://fonts.google.com/specimen/Space+Grotesk)        | Tipografia principal                                   | https://fontsource.org/fonts/space-grotesk                 |
-| [Prettier](https://prettier.io)                                         | Formatação de código consistente                       | https://prettier.io                                        |
+| [Inter Variable](https://fonts.google.com/specimen/Inter)               | Tipografia secundária                                  | https://fontsource.org/fonts/inter                         |
+| [Biome](https://biomejs.dev)                                            | Linter e formatter ultrarrápido (substitui ESLint + Prettier) | https://biomejs.dev                                 |
 | [Husky](https://typicode.github.io/husky)                               | Git hooks para rodar lint/format antes de commits      | https://typicode.github.io/husky                           |
 | [lint-staged](https://github.com/lint-staged/lint-staged)               | Roda linters apenas nos arquivos staged                | https://github.com/lint-staged/lint-staged                 |
 | [Knip](https://knip.dev)                                                | Remove dependências, exports e arquivos não utilizados | https://knip.dev                                           |
@@ -67,15 +70,17 @@ cp .env.example .env
 ## Scripts
 
 ```bash
-pnpm dev           # Inicia o servidor de desenvolvimento
-pnpm build         # Gera o build de produção
-pnpm preview       # Visualiza o build de produção localmente
-pnpm test          # Roda os testes em modo watch
-pnpm test:ui       # Roda os testes com interface visual
-pnpm test:coverage # Gera relatório de cobertura
-pnpm lint          # Roda o ESLint
-pnpm format        # Formata todos os arquivos com Prettier
-pnpm knip          # Detecta código morto e dependências não utilizadas
+pnpm dev              # Inicia o servidor de desenvolvimento na porta 3000
+pnpm build            # Gera o build de produção
+pnpm preview          # Visualiza o build de produção localmente
+pnpm test             # Roda os testes uma vez
+pnpm test:ui          # Roda os testes com interface visual
+pnpm test:coverage    # Gera relatório de cobertura
+pnpm lint             # Roda o Biome lint
+pnpm format           # Formata todos os arquivos com Biome
+pnpm check            # Roda lint + format juntos (recomendado)
+pnpm knip             # Detecta código morto e dependências não utilizadas
+pnpm generate-routes  # Gera a árvore de rotas manualmente
 ```
 
 ---
@@ -95,56 +100,131 @@ VITE_API_TIMEOUT=     # Timeout das requisições em ms (padrão: 10000)
 
 ```
 src/
-├── components/
-│   └── ui/          # Componentes do Shadcn/ui
+├── component/        # Componentes reutilizáveis
 ├── lib/
-│   ├── http.ts      # Wrapper da Fetch API (get, post, put, patch, delete)
-│   ├── i18n.ts      # Configuração do i18next
-│   └── utils.ts     # Utilitários (cn do Shadcn)
-├── routes/          # Rotas do TanStack Router
-├── store/           # Stores do Zustand
+│   └── i18n.ts       # Configuração do i18next
+├── routes/           # Rotas do TanStack Router (file-based)
+│   ├── __root.tsx    # Layout raiz
+│   └── index.tsx     # Rota /
+├── stores/           # Stores do Zustand
 ├── test/
-│   └── setup.ts     # Setup global do Vitest + Testing Library
-├── index.css        # Tema global (variáveis Shadcn/ui)
-├── main.tsx         # Ponto de entrada da aplicação
-└── vite-env.d.ts    # Tipos do Vite
+│   └── setup.ts      # Setup global do Vitest + Testing Library
+├── routeTree.gen.ts  # Gerado automaticamente — não editar
+├── router.tsx        # Instância do router e configurações globais
+└── styles.css        # Tema global e variáveis CSS
 ```
 
 ---
 
 ## Tema — Chaotic Goblin Tech
 
-O projeto usa um tema customizado chamado **Chaotic Goblin Tech** configurado via variáveis CSS do Shadcn/ui.
+O projeto usa um tema customizado chamado **Chaotic Goblin Tech** configurado via variáveis CSS no `styles.css`.
 
-| Token           | Cor          | Hex       |
+| Token           | Nome         | Hex       |
 | --------------- | ------------ | --------- |
-| `--background`  | Void Night   | `#1a1a2e` |
-| `--card`        | Cavern Blue  | `#16213e` |
-| `--primary`     | Slime Green  | `#8BF046` |
-| `--destructive` | Forge Orange | `#FF9A3C` |
-| `--accent`      | Potion Mist  | `#C8F0A0` |
-| `--foreground`  | Parchment    | `#E8E8E8` |
+| `--background`  | Parchment    | `#e8e8e8` |
+| `--foreground`  | Void Night   | `#1a1a2e` |
+| `--card`        | White        | `#ffffff` |
+| `--primary`     | Slime Green  | `#8bf046` |
+| `--destructive` | Forge Orange | `#ff9a3c` |
+| `--accent`      | Potion Mist  | `#c8f0a0` |
+| `--secondary`   | Cavern Blue  | `#243b6e` |
 
-Para adicionar novos componentes Shadcn/ui:
+O dark mode usa a classe `.dark` no elemento raiz e é ativado via `@custom-variant dark (&:is(.dark *))`.
 
-```bash
-pnpm dlx shadcn@latest add <componente>
+---
+
+## Tipografia
+
+O projeto usa duas fontes via `@fontsource`:
+
+| Classe Tailwind | Fonte          | Uso sugerido        |
+| --------------- | -------------- | ------------------- |
+| `font-grotesk`  | Space Grotesk  | Títulos e destaques |
+| `font-inter`    | Inter Variable | Corpo de texto      |
+
+O `font-grotesk` é aplicado globalmente no `body`. Para usar o Inter em elementos específicos:
+
+```tsx
+<p className="font-inter">texto em Inter</p>
 ```
 
 ---
 
-## Testes
+## Roteamento
 
-Os testes usam **Vitest** + **React Testing Library**. Para componentes isolados:
+O TanStack Router usa file-based routing — a estrutura de arquivos em `src/routes/` define as rotas automaticamente.
+
+```
+src/routes/
+├── __root.tsx      → layout raiz (wraps todas as rotas)
+├── index.tsx       → rota /
+├── about.tsx       → rota /about
+└── posts/
+    ├── index.tsx   → rota /posts
+    └── $postId.tsx → rota /posts/:postId
+```
+
+O `router.tsx` centraliza a criação do router com as configurações globais:
+
+- `scrollRestoration` — restaura a posição do scroll ao navegar entre rotas
+- `defaultPreload: 'intent'` — pré-carrega a rota ao hover no link
+- `defaultPreloadStaleTime: 0` — sempre revalida os dados ao navegar
+
+O arquivo `routeTree.gen.ts` é gerado automaticamente pelo plugin do Vite — nunca edite manualmente. Para criar uma nova rota, basta criar o arquivo em `src/routes/` e o router detecta automaticamente durante o `pnpm dev`.
+
+---
+
+## Formulários
+
+O TanStack Form é usado em conjunto com o Zod para validação:
 
 ```tsx
-import { render, screen } from "@testing-library/react"
-import { Button } from "@/components/ui/button"
+import { useForm } from '@tanstack/react-form'
+import { zodValidator } from '@tanstack/zod-form-adapter'
+import { z } from 'zod'
 
-test("renderiza o botão", () => {
-  render(<Button>Click me</Button>)
-  expect(screen.getByText("Click me")).toBeInTheDocument()
+const schema = z.object({
+  email: z.string().email(),
 })
+
+function MyForm() {
+  const form = useForm({
+    defaultValues: { email: '' },
+    validatorAdapter: zodValidator(),
+    onSubmit: async ({ value }) => console.log(value),
+  })
+
+  return (
+    <form onSubmit={(e) => { e.preventDefault(); form.handleSubmit() }}>
+      <form.Field
+        name="email"
+        validators={{ onChange: schema.shape.email }}
+        children={(field) => (
+          <input
+            value={field.state.value}
+            onChange={(e) => field.handleChange(e.target.value)}
+          />
+        )}
+      />
+    </form>
+  )
+}
+```
+
+---
+
+## Estado Global
+
+As stores ficam em `src/stores/`. Exemplo com Zustand:
+
+```tsx
+import { useCounterStore } from '@/stores/useCounterStore'
+
+function Counter() {
+  const { count, increment } = useCounterStore()
+  return <button onClick={increment}>{count}</button>
+}
 ```
 
 ---
@@ -154,72 +234,29 @@ test("renderiza o botão", () => {
 As traduções ficam em `src/lib/i18n.ts`. Para usar nos componentes:
 
 ```tsx
-import { useTranslation } from "react-i18next"
+import { useTranslation } from 'react-i18next'
 
 function Home() {
   const { t } = useTranslation()
-  return <h1>{t("welcome")}</h1>
+  return <h1>{t('welcome')}</h1>
 }
 ```
 
 ---
 
-## Estado Global
+## Testes
 
-As stores do Zustand ficam em `src/store/`. Exemplo de uso:
+Os testes usam **Vitest** + **React Testing Library**. Arquivos de teste ficam junto ao componente (`.test.tsx`):
 
 ```tsx
-import { useAppStore } from "@/store/app.store"
+import { render, screen } from '@testing-library/react'
+import { describe, it, expect } from 'vitest'
 
-function Counter() {
-  const { count, increment } = useAppStore()
-  return <button onClick={increment}>{count}</button>
-}
-```
-
----
-
-## Requisições HTTP
-
-O cliente HTTP fica em `src/lib/http.ts`. É um wrapper leve sobre a **Fetch API nativa** do browser — sem dependências externas — com suporte a tipagem genérica, query params, timeout via `AbortController`, interceptors de request/response e erro tipado via `HttpError`.
-
-O token JWT é injetado automaticamente em todas as requisições a partir do `localStorage`, e respostas `401` redirecionam para `/login` sem nenhuma configuração extra.
-
-```ts
-import { http, HttpError } from "@/lib/http"
-
-// GET com query params tipados
-const users = await http.get<User[]>("/users", {
-  params: { page: 1, limit: 20 },
-})
-
-// POST
-const novoUser = await http.post<User>("/users", { name: "João" })
-
-// PUT / PATCH / DELETE
-await http.put("/users/123", { name: "João Atualizado" })
-await http.patch("/users/123", { active: false })
-await http.delete("/users/123")
-
-// Tratamento de erro tipado
-try {
-  await http.delete("/users/123")
-} catch (e) {
-  if (e instanceof HttpError) {
-    console.log(e.status) // 404, 500, etc.
-    console.log(e.data) // corpo da resposta de erro
-  }
-}
-```
-
-Para adicionar interceptors customizados (ex: logging, toast de erro global):
-
-```ts
-import { addRequestInterceptor, addResponseInterceptor } from "@/lib/http"
-
-addResponseInterceptor(async (response) => {
-  if (response.status >= 500) toast.error("Erro no servidor")
-  return response
+describe('MeuComponente', () => {
+  it('renderiza corretamente', () => {
+    render(<MeuComponente />)
+    expect(screen.getByText('texto')).toBeInTheDocument()
+  })
 })
 ```
 
@@ -227,19 +264,21 @@ addResponseInterceptor(async (response) => {
 
 ## Qualidade de Código
 
-### Prettier
+### Biome
 
-Formata o código automaticamente. Para formatar todos os arquivos:
+O projeto usa **Biome** como linter e formatter — substitui ESLint + Prettier em um único binário extremamente rápido.
 
 ```bash
-pnpm format
+pnpm check    # lint + format juntos (use no dia a dia)
+pnpm lint     # só lint
+pnpm format   # só format
 ```
 
-A configuração fica em `.prettierrc`. O plugin `prettier-plugin-tailwindcss` ordena as classes do Tailwind automaticamente.
+A configuração fica em `biome.json`.
 
 ### Husky + lint-staged
 
-A cada `git commit`, o Husky roda automaticamente o ESLint e o Prettier apenas nos arquivos staged. Nenhuma configuração extra necessária — funciona após o `pnpm install`.
+A cada `git commit`, o Husky roda automaticamente o `biome check --write` apenas nos arquivos staged. Nenhuma configuração extra necessária — funciona após o `pnpm install`.
 
 ### Knip
 
@@ -249,7 +288,7 @@ Detecta e reporta arquivos, exports e dependências não utilizados:
 pnpm knip
 ```
 
-A configuração fica em `knip.json`.
+A configuração fica em `knip.config.ts`.
 
 ---
 

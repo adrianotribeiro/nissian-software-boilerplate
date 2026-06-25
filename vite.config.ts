@@ -1,26 +1,30 @@
-import { defineConfig } from "vitest/config";
-import react, { reactCompilerPreset } from "@vitejs/plugin-react";
-import babel from "@rolldown/plugin-babel";
-import path from "path";
-import { tanstackRouter } from "@tanstack/router-plugin/vite";
+import { defineConfig } from 'vitest/config'
+import { devtools } from '@tanstack/devtools-vite'
 
-export default defineConfig({
+import { tanstackStart } from '@tanstack/react-start/plugin/vite'
+
+import viteReact, { reactCompilerPreset } from '@vitejs/plugin-react'
+import babel from '@rolldown/plugin-babel'
+import tailwindcss from '@tailwindcss/vite'
+
+const config = defineConfig({
+  resolve: { tsconfigPaths: true },
   plugins: [
-    tanstackRouter({
-      routesDirectory: "./src/routes",
-      generatedRouteTree: "./src/routeTree.gen.ts",
-    }),
-    react(),
+    devtools(),
+    tailwindcss(),
+    tanstackStart(),
+    viteReact(),
     babel({ presets: [reactCompilerPreset()] }),
   ],
-  resolve: {
-    alias: {
-      "@": path.resolve(__dirname, "src"),
-    },
-  },
   test: {
-    environment: "jsdom",
     globals: true,
-    setupFiles: "./src/test/setup.ts",
-  },
-});
+    environment: 'jsdom',
+    setupFiles: ['./src/test/setup.ts'],
+    coverage: {
+      provider: 'v8',
+      reporter: ['text', 'json', 'html'],
+    },
+  }
+})
+
+export default config
