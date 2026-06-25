@@ -54,7 +54,7 @@ eval "$(fnm env --use-on-cd --shell zsh)"
 
 ```bash
 # Clone o repositório
-git clone https://github.com/nissian-software/nissian-software-boilerplate.git
+git clone https://github.com/adrianotribeiro/nissian-software-boilerplate.git
 cd nissian-software-boilerplate
 
 # A versão correta do Node será usada automaticamente via .node-version
